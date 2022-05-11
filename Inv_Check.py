@@ -21,13 +21,17 @@ st.title("Rohit Bhai the Great....!")
 
 
     
-
+arr=''
 aa=st.text_input("Enter Total Amount: ")
-try:
-    arr=list(map(int,aa.split(" ")))
-except:
-    arr=list(map(float,aa.split(" ")))
-# st.write(arr)
+
+if aa:
+    try:
+        arr=list(map(int,aa.split(" ")))
+    except:
+        arr=list(map(float,aa.split(" ")))
+else:
+    pass
+
 
 aa=[]
 a=0
@@ -35,7 +39,7 @@ a=0
 
 for i in arr:
     a=a+i
-    if a>39000:
+    if a>39800:
         break
     else:
         aa.append(i)
@@ -44,6 +48,10 @@ for i in arr:
 
 # print(aa)
 
+# for i in aa:
+#     with open("Inv_Check.txt","a") as f:
+#         f.write(str(i)+"\n")
+
 towrite = io.BytesIO()
 ab=pd.DataFrame(aa,columns=["Amount"],index=range(1,len(aa)+1))
 ab.to_csv(towrite,encoding="utf-8",index=False,header=True)
@@ -51,5 +59,13 @@ towrite.seek(0)
 b64 = base64.b64encode(towrite.read()).decode()
 linko= f'<a href="data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,{b64}" download="AmtData.csv">Download file</a>'
 st.markdown(linko, unsafe_allow_html=True)
+
+
+raw_text=st.button("Raw Text")
+if raw_text:
+    for i in aa:
+        st.text(i)
+else:
+    st.warning("")
 
 
