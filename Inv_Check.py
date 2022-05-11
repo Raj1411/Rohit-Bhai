@@ -42,14 +42,8 @@ for i in arr:
 
 # print(aa)
 
-# for i in aa:
-#     with open("Inv_Check.txt","a") as f:
-#         f.write(str(i)+"\n")
-
-# 
-with open("Inv_Check.txt","a") as f:
-    for i in aa:
-        f.write(str(i)+"\n")
+for i in aa:
+    st.write(str(i))
     
 
 
